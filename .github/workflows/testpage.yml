@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Selection</title>
+</head>
+<body>
+    <h1>Select Session</h1>
+    <form id="attendanceForm">
+        <input type="hidden" id="email" name="email" value="">
+        <label for="session">Select Session:</label>
+        <select id="session" name="session">
+            <option value="Session1">Session 1</option>
+            <option value="Session2">Session 2</option>
+            <option value="Session3">Session 3</option>
+            <!-- Add more sessions as needed -->
+        </select>
+        <button type="button" onclick="submitAttendance()">Submit</button>
+    </form>
+
+    <script>
+        // Function to get the email from the URL and set it in the hidden field
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const email = urlParams.get('email');
+            document.getElementById('email').value = email;
+        };
+
+        // Function to submit attendance
+        function submitAttendance() {
+            const email = document.getElementById('email').value;
+            const session = document.getElementById('session').value;
+            const attendanceUrl = `https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec?email=${email}&session=${session}`;
+            window.location.href = attendanceUrl; // Redirect to attendance logging URL
+        }
+    </script>
+</body>
+</html>
